@@ -16,6 +16,9 @@ export default function Home() {
       >
         <button type="submit">Call import</button>
       </form>
+      <form>
+        <input placeholder="put step 2 url here" />
+      </form>
     </>
   );
 }

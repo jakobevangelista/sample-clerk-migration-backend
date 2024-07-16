@@ -14,17 +14,14 @@ export const POST = async (req: NextRequest) => {
   const length = await redis.llen(process.env.CLERK_SECRET_KEY!);
   for (let i = 0; i < length; i++) {
     const id = await redis.lpop<string>(process.env.CLERK_SECRET_KEY!);
-    const res = await fetch(
-      "http://localhost:3001/api/done-for-you-batch/import",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: id }),
-        cache: "no-store",
-      }
-    );
+    const res = await fetch("http://localhost:3001/api/step2", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+      cache: "no-store",
+    });
 
     const body = await res.json();
     console.log("CREATE USER BODY: ", body);
