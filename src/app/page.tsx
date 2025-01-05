@@ -5,7 +5,7 @@ export default function Home() {
       <form
         action={async () => {
           "use server";
-          await fetch("http://localhost:3000/api/batch/import", {
+          await fetch("http://localhost:3001/api/batch/import", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

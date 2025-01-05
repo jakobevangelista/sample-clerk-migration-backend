@@ -14,13 +14,14 @@ const redis = new Redis({
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
+  //   console.log(body);
   // sample code to get the toke and then feed it into clerk to access their information
   const header = headers();
   const key = header.get("authorization")?.split(" ")[1] as string;
-  await redis.rpush(key, body.id);
-  console.log("INSERTED: ", body.id, key);
+  await redis.rpush(key, body.id.id);
+  console.log("INSERTED: ", body.id.id);
 
-  //   const id = await redis.lpop(key);
+  const id = await redis.lpop(key);
 
   //   const schedules = client.schedules;
   //   await schedules.create({
